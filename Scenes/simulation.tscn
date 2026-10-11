@@ -1,5 +1,12 @@
 [gd_scene format=3 uid="uid://bnghfvkvho0ln"]
 
+[ext_resource type="Script" uid="uid://d05woj0hbb8mf" path="res://Scripts/main_ui_controller.gd" id="1_ql6px"]
+[ext_resource type="Script" uid="uid://suxr8ee5plfs" path="res://Scripts/road_manager.gd" id="2_wpefv"]
+[ext_resource type="PackedScene" uid="uid://b2ex3e5t8hhwl" path="res://Scenes/road_marker.tscn" id="3_diyjw"]
+[ext_resource type="Script" uid="uid://4yhbddtibbe4" path="res://Scripts/road_visualizer.gd" id="4_wpefv"]
+[ext_resource type="Script" uid="uid://g5tl1k7n783o" path="res://Scripts/road_marker.gd" id="4_ypxof"]
+[ext_resource type="Script" uid="uid://bvlnuv1hvf2uy" path="res://Scripts/camera_controller.gd" id="5_83pfb"]
+
 [node name="Simulation" type="Node2D" unique_id=2073321539]
 
 [node name="ui_layer" type="CanvasLayer" parent="." unique_id=40400959]
@@ -11,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ql6px")
 
 [node name="title" type="Label" parent="ui_layer/main_simulation_hud" unique_id=1084191619]
 layout_mode = 1
@@ -25,3 +33,53 @@ theme_override_font_sizes/font_size = 25
 text = "Simulation"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="road_network" type="Node2D" parent="." unique_id=1461777015]
+script = ExtResource("2_wpefv")
+
+[node name="road_marker" parent="road_network" unique_id=1499536455 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(9, -135)
+connected_nodes = [NodePath("../@Marker2D@36603"), NodePath("../@Marker2D@48938")]
+
+[node name="@Marker2D@36603" parent="road_network" unique_id=1037460098 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(238, -302)
+connected_nodes = [NodePath("../road_marker"), NodePath("../@Marker2D@37085"), NodePath("../@Marker2D@46484"), NodePath("../@Marker2D@47890")]
+
+[node name="@Marker2D@37085" parent="road_network" unique_id=660772486 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(55, -479)
+connected_nodes = [NodePath("../@Marker2D@36603"), NodePath("../@Marker2D@37433"), NodePath("../@Marker2D@46484")]
+
+[node name="@Marker2D@37433" parent="road_network" unique_id=1670252372 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(-150, -356)
+connected_nodes = [NodePath("../@Marker2D@37085"), NodePath("../road_marker"), NodePath("../@Marker2D@39427")]
+
+[node name="@Marker2D@39427" parent="road_network" unique_id=1289684687 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(-180, -188)
+connected_nodes = [NodePath("../@Marker2D@37433"), NodePath("../road_marker")]
+
+[node name="@Marker2D@46484" type="Marker2D" parent="road_network" unique_id=355825259 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(257, -487)
+script = ExtResource("4_ypxof")
+connected_nodes = [NodePath("../@Marker2D@36603"), NodePath("../@Marker2D@37085")]
+
+[node name="@Marker2D@47890" type="Marker2D" parent="road_network" unique_id=1960339429 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(510, -169)
+script = ExtResource("4_ypxof")
+connected_nodes = [NodePath("../@Marker2D@36603"), NodePath("../@Marker2D@48589"), NodePath("../@Marker2D@48938")]
+
+[node name="@Marker2D@48589" type="Marker2D" parent="road_network" unique_id=1831440315 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(508, 78)
+script = ExtResource("4_ypxof")
+connected_nodes = [NodePath("../@Marker2D@47890"), NodePath("../@Marker2D@48938")]
+
+[node name="@Marker2D@48938" type="Marker2D" parent="road_network" unique_id=323048115 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(241, 108)
+script = ExtResource("4_ypxof")
+connected_nodes = [NodePath("../@Marker2D@48589"), NodePath("../road_marker"), NodePath("../@Marker2D@47890")]
+
+[node name="road_visualizer" type="Node2D" parent="." unique_id=126050889 node_paths=PackedStringArray("road_manager")]
+script = ExtResource("4_wpefv")
+road_manager = NodePath("../road_network")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=30825103]
+script = ExtResource("5_83pfb")

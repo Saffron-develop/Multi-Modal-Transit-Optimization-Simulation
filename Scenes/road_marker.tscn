@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b2ex3e5t8hhwl"]
+
+[ext_resource type="Script" uid="uid://g5tl1k7n783o" path="res://Scripts/road_marker.gd" id="1_lx1yn"]
+[ext_resource type="Texture2D" uid="uid://b8sbnxu6uo7gq" path="res://Assets/Basic 2D Shapes Primitive 128px/grey soft/RoundExtra (2).png" id="2_rks3t"]
+
+[node name="road_marker" type="Marker2D" unique_id=1499536455]
+script = ExtResource("1_lx1yn")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=2099798202]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_rks3t")
