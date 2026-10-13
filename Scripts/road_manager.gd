@@ -41,6 +41,11 @@ func _draw() -> void:
 	# 		draw_line(node, edge, Color(.7, .7, .7), 80)
 	# 		edge_queue[edge].erase(node)
 	for node in nodes:
-		draw_circle(node, 20, Color(.7, .7, .7))
+		draw_circle(node, 40, Color(.7, .7, .7))
 		for edge in edges[node]:
-			draw_line(node, edge, Color(0.7, 0.7, 0.7), 40)
+			draw_line(node, edge, Color(0.7, 0.7, 0.7), 80)
+
+	for node in nodes:
+		draw_circle(node, 8, Color(1, 1, 1))
+		for edge in edges[node]:
+			draw_line(node, edge, Color(1, 1, 1), 16)

@@ -38,44 +38,22 @@ vertical_alignment = 1
 script = ExtResource("2_wpefv")
 
 [node name="road_marker" parent="road_network" unique_id=1499536455 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(9, -135)
-connected_nodes = [NodePath("../@Marker2D@36603"), NodePath("../@Marker2D@48938")]
+connected_nodes = [NodePath("../@Marker2D@32822")]
 
-[node name="@Marker2D@36603" parent="road_network" unique_id=1037460098 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(238, -302)
-connected_nodes = [NodePath("../road_marker"), NodePath("../@Marker2D@37085"), NodePath("../@Marker2D@46484"), NodePath("../@Marker2D@47890")]
-
-[node name="@Marker2D@37085" parent="road_network" unique_id=660772486 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(55, -479)
-connected_nodes = [NodePath("../@Marker2D@36603"), NodePath("../@Marker2D@37433"), NodePath("../@Marker2D@46484")]
-
-[node name="@Marker2D@37433" parent="road_network" unique_id=1670252372 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(-150, -356)
-connected_nodes = [NodePath("../@Marker2D@37085"), NodePath("../road_marker"), NodePath("../@Marker2D@39427")]
-
-[node name="@Marker2D@39427" parent="road_network" unique_id=1289684687 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(-180, -188)
-connected_nodes = [NodePath("../@Marker2D@37433"), NodePath("../road_marker")]
-
-[node name="@Marker2D@46484" type="Marker2D" parent="road_network" unique_id=355825259 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(257, -487)
+[node name="@Marker2D@32822" type="Marker2D" parent="road_network" unique_id=478637249 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(1000, 0)
 script = ExtResource("4_ypxof")
-connected_nodes = [NodePath("../@Marker2D@36603"), NodePath("../@Marker2D@37085")]
+connected_nodes = [NodePath("../road_marker"), NodePath("../@Marker2D@33183")]
 
-[node name="@Marker2D@47890" type="Marker2D" parent="road_network" unique_id=1960339429 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(510, -169)
+[node name="@Marker2D@33183" type="Marker2D" parent="road_network" unique_id=2056924777 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(1000, -1000)
 script = ExtResource("4_ypxof")
-connected_nodes = [NodePath("../@Marker2D@36603"), NodePath("../@Marker2D@48589"), NodePath("../@Marker2D@48938")]
+connected_nodes = [NodePath("../@Marker2D@32822"), NodePath("../@Marker2D@33549"), NodePath("../@Marker2D@33549")]
 
-[node name="@Marker2D@48589" type="Marker2D" parent="road_network" unique_id=1831440315 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(508, 78)
+[node name="@Marker2D@33549" type="Marker2D" parent="road_network" unique_id=922480767 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+position = Vector2(0, -1000)
 script = ExtResource("4_ypxof")
-connected_nodes = [NodePath("../@Marker2D@47890"), NodePath("../@Marker2D@48938")]
-
-[node name="@Marker2D@48938" type="Marker2D" parent="road_network" unique_id=323048115 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-position = Vector2(241, 108)
-script = ExtResource("4_ypxof")
-connected_nodes = [NodePath("../@Marker2D@48589"), NodePath("../road_marker"), NodePath("../@Marker2D@47890")]
+connected_nodes = [NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@32822")]
 
 [node name="road_visualizer" type="Node2D" parent="." unique_id=126050889 node_paths=PackedStringArray("road_manager")]
 script = ExtResource("4_wpefv")
