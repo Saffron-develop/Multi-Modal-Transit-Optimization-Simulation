@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://suxr8ee5plfs" path="res://Scripts/road_manager.gd" id="2_wpefv"]
 [ext_resource type="PackedScene" uid="uid://b2ex3e5t8hhwl" path="res://Scenes/road_marker.tscn" id="3_diyjw"]
 [ext_resource type="Script" uid="uid://4yhbddtibbe4" path="res://Scripts/road_visualizer.gd" id="4_wpefv"]
-[ext_resource type="Script" uid="uid://g5tl1k7n783o" path="res://Scripts/road_marker.gd" id="4_ypxof"]
 [ext_resource type="Script" uid="uid://bvlnuv1hvf2uy" path="res://Scripts/camera_controller.gd" id="5_83pfb"]
+[ext_resource type="Script" uid="uid://bdjdhnw1o8rhs" path="res://Scripts/buliding/access_node_tool.gd" id="6_ypxof"]
 
 [node name="Simulation" type="Node2D" unique_id=2073321539]
 
@@ -37,23 +37,24 @@ vertical_alignment = 1
 [node name="road_network" type="Node2D" parent="." unique_id=1461777015]
 script = ExtResource("2_wpefv")
 
-[node name="road_marker" parent="road_network" unique_id=1499536455 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
-connected_nodes = [NodePath("../@Marker2D@32822")]
+[node name="road_marker" parent="road_network" unique_id=1499536455 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
+connected_nodes = [NodePath("../@Marker2D@32822"), NodePath("../_Marker2D_33549")]
 
-[node name="@Marker2D@32822" type="Marker2D" parent="road_network" unique_id=478637249 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+[node name="@Marker2D@32822" parent="road_network" unique_id=478637249 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
 position = Vector2(1000, 0)
-script = ExtResource("4_ypxof")
 connected_nodes = [NodePath("../road_marker"), NodePath("../@Marker2D@33183")]
 
-[node name="@Marker2D@33183" type="Marker2D" parent="road_network" unique_id=2056924777 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+[node name="@Marker2D@33183" parent="road_network" unique_id=2056924777 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
 position = Vector2(1000, -1000)
-script = ExtResource("4_ypxof")
-connected_nodes = [NodePath("../@Marker2D@32822"), NodePath("../@Marker2D@33549"), NodePath("../@Marker2D@33549")]
+connected_nodes = [NodePath("../@Marker2D@32822"), NodePath("../_Marker2D_33549"), NodePath("../_Marker2D_33549")]
 
-[node name="@Marker2D@33549" type="Marker2D" parent="road_network" unique_id=922480767 node_paths=PackedStringArray("connected_nodes") instance=ExtResource("3_diyjw")]
+[node name="_Marker2D_33549" parent="road_network" unique_id=922480767 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
 position = Vector2(0, -1000)
-script = ExtResource("4_ypxof")
-connected_nodes = [NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@32822")]
+connected_nodes = [NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@32822"), NodePath("../road_marker"), NodePath("../@Marker2D@43204")]
+
+[node name="@Marker2D@43204" parent="road_network" unique_id=1823772891 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
+position = Vector2(-618, -1241)
+connected_nodes = [NodePath("../_Marker2D_33549")]
 
 [node name="road_visualizer" type="Node2D" parent="." unique_id=126050889 node_paths=PackedStringArray("road_manager")]
 script = ExtResource("4_wpefv")
@@ -61,3 +62,10 @@ road_manager = NodePath("../road_network")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=30825103]
 script = ExtResource("5_83pfb")
+
+[node name="buliding" type="Node2D" parent="." unique_id=1425212061]
+position = Vector2(-192, -509)
+
+[node name="access_node" type="Marker2D" parent="buliding" unique_id=639625543]
+position = Vector2(92, -747.4315)
+script = ExtResource("6_ypxof")
