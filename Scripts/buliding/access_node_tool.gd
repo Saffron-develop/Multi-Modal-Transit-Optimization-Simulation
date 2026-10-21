@@ -27,38 +27,34 @@ func _process(delta: float) -> void:
 		
 		var node_a = selected_nodes[0].global_position
 		var node_b = selected_nodes[1].global_position
-		var above = false
+		var buidling_pos = get_parent().global_position
+		var above = 1
 
-		#step 1, check if vertical
+		#step 1, check if vertical or horizontal
 		if node_a.x == node_b.x:
-			if global_position.x < node_a.x:
-				above = true
-		#step 2, find slope of road
+			global_position.x = node_a.x
+			waiting_for_selection = false
+			return
+
+		if node_a.y == node_b.y:
+			global_position.y = node_a.y
+			waiting_for_selection = false
+			return
+
+		#step 2, find slope of road and perpendicular slope
 		var road_slope = (node_a.y - node_b.y) / (node_a.x - node_b.x)
+		var perpendicular_slope = -(1 / road_slope)
 
-		#step 3, find y-intercept
+		#step 3, find y-intercept and perpendicular y-intercept
 		var road_intercept = node_a.y - (road_slope * node_a.x)
+		var perpendicular_intercept = buidling_pos.y - (perpendicular_slope * buidling_pos.x)
 
-		#step 4, plug in x of access into slope formula
-		var access_point_line_height = (road_slope * global_position.x) + road_intercept
-
-		#step 5, compare resulting y to access y
-		if access_point_line_height >= global_position.y:
-			above = true
-
-		if above:
-			print("point is above")
-		else:
-			print("point is below")
-
-		#step 6, find perpendicular slope and place access there.
-		var perpendicular_slope = 1 / road_slope
-		if above:
-			global_position = Vector2(node_a.x - 100, (perpendicular_slope * 100) + node_a.y)
-		else:
-			global_position = Vector2(node_a.x - 100, (perpendicular_slope * -100) + node_a.y)
-
-		
-		print("node a: ", selected_nodes[0], "  node b: ", selected_nodes[1])
+		#step 4, solves the systems of equation for the two lines to find where they intersect
+		var x_value = (perpendicular_intercept-road_intercept)/(road_slope-perpendicular_slope)
+		var y_value = ((road_slope*perpendicular_intercept)-(perpendicular_slope * road_intercept))/(road_slope-perpendicular_slope)
+		var intersection_point = Vector2(x_value, y_value)
+	
+		print(intersection_point)
+		global_position = intersection_point
 
 		waiting_for_selection = false

@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bnghfvkvho0ln"]
+
+[ext_resource type="Script" uid="uid://d05woj0hbb8mf" path="res://Scripts/main_ui_controller.gd" id="1_ql6px"]
+[ext_resource type="Script" uid="uid://suxr8ee5plfs" path="res://Scripts/road_manager.gd" id="2_wpefv"]
+[ext_resource type="PackedScene" uid="uid://b2ex3e5t8hhwl" path="res://Scenes/road_marker.tscn" id="3_diyjw"]
+[ext_resource type="Script" uid="uid://4yhbddtibbe4" path="res://Scripts/road_visualizer.gd" id="4_wpefv"]
+[ext_resource type="Script" uid="uid://bvlnuv1hvf2uy" path="res://Scripts/camera_controller.gd" id="5_83pfb"]
+[ext_resource type="Script" uid="uid://bdjdhnw1o8rhs" path="res://Scripts/buliding/access_node_tool.gd" id="6_ypxof"]
+[ext_resource type="Texture2D" uid="uid://tq7cstov63rr" path="res://Assets/Basic 2D Shapes Primitive 128px/grey rough/Diamond (2).png" id="7_v0ioj"]
+
+[node name="Simulation" type="Node2D" unique_id=2073321539]
+
+[node name="ui_layer" type="CanvasLayer" parent="." unique_id=40400959]
+
+[node name="main_simulation_hud" type="Control" parent="ui_layer" unique_id=61274369]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ql6px")
+
+[node name="title" type="Label" parent="ui_layer/main_simulation_hud" unique_id=1084191619]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_right = 42.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "Simulation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="road_network" type="Node2D" parent="." unique_id=1461777015]
+script = ExtResource("2_wpefv")
+
+[node name="road_marker" parent="road_network" unique_id=1499536455 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
+connected_nodes = [NodePath("../@Marker2D@32822"), NodePath("../_Marker2D_33549")]
+
+[node name="@Marker2D@32822" parent="road_network" unique_id=478637249 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
+position = Vector2(1000, 0)
+connected_nodes = [NodePath("../road_marker"), NodePath("../@Marker2D@33183")]
+
+[node name="@Marker2D@33183" parent="road_network" unique_id=2056924777 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
+position = Vector2(1000, -1000)
+connected_nodes = [NodePath("../@Marker2D@32822"), NodePath("../_Marker2D_33549"), NodePath("../_Marker2D_33549")]
+
+[node name="_Marker2D_33549" parent="road_network" unique_id=922480767 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
+position = Vector2(0, -1000)
+connected_nodes = [NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@32822"), NodePath("../road_marker"), NodePath("../_Marker2D_43204")]
+
+[node name="_Marker2D_43204" parent="road_network" unique_id=1823772891 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
+position = Vector2(-799, -1333)
+connected_nodes = [NodePath("../_Marker2D_33549")]
+
+[node name="road_visualizer" type="Node2D" parent="." unique_id=126050889 node_paths=PackedStringArray("road_manager")]
+script = ExtResource("4_wpefv")
+road_manager = NodePath("../road_network")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=30825103]
+script = ExtResource("5_83pfb")
+
+[node name="buliding" type="Node2D" parent="." unique_id=1425212061]
+position = Vector2(-125, -1410)
+
+[node name="access_node" type="Marker2D" parent="buliding" unique_id=639625543]
+position = Vector2(-122.28146, 313.56824)
+script = ExtResource("6_ypxof")
+
+[node name="sprite" type="Sprite2D" parent="buliding" unique_id=441825277]
+scale = Vector2(1.84375, 1.84375)
+texture = ExtResource("7_v0ioj")

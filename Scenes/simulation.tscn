@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://4yhbddtibbe4" path="res://Scripts/road_visualizer.gd" id="4_wpefv"]
 [ext_resource type="Script" uid="uid://bvlnuv1hvf2uy" path="res://Scripts/camera_controller.gd" id="5_83pfb"]
 [ext_resource type="Script" uid="uid://bdjdhnw1o8rhs" path="res://Scripts/buliding/access_node_tool.gd" id="6_ypxof"]
+[ext_resource type="Texture2D" uid="uid://tq7cstov63rr" path="res://Assets/Basic 2D Shapes Primitive 128px/grey rough/Diamond (2).png" id="7_v0ioj"]
 
 [node name="Simulation" type="Node2D" unique_id=2073321539]
 
@@ -50,10 +51,10 @@ connected_nodes = [NodePath("../@Marker2D@32822"), NodePath("../_Marker2D_33549"
 
 [node name="_Marker2D_33549" parent="road_network" unique_id=922480767 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
 position = Vector2(0, -1000)
-connected_nodes = [NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@32822"), NodePath("../road_marker"), NodePath("../@Marker2D@43204")]
+connected_nodes = [NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@33183"), NodePath("../@Marker2D@32822"), NodePath("../road_marker"), NodePath("../_Marker2D_43204")]
 
-[node name="@Marker2D@43204" parent="road_network" unique_id=1823772891 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
-position = Vector2(-618, -1241)
+[node name="_Marker2D_43204" parent="road_network" unique_id=1823772891 node_paths=PackedStringArray("connected_nodes") groups=["road_marker"] instance=ExtResource("3_diyjw")]
+position = Vector2(-799, -1333)
 connected_nodes = [NodePath("../_Marker2D_33549")]
 
 [node name="road_visualizer" type="Node2D" parent="." unique_id=126050889 node_paths=PackedStringArray("road_manager")]
@@ -64,8 +65,12 @@ road_manager = NodePath("../road_network")
 script = ExtResource("5_83pfb")
 
 [node name="buliding" type="Node2D" parent="." unique_id=1425212061]
-position = Vector2(-192, -509)
+position = Vector2(-125, -1410)
 
 [node name="access_node" type="Marker2D" parent="buliding" unique_id=639625543]
-position = Vector2(92, -747.4315)
+position = Vector2(-122.28146, 313.56824)
 script = ExtResource("6_ypxof")
+
+[node name="sprite" type="Sprite2D" parent="buliding" unique_id=441825277]
+scale = Vector2(1.84375, 1.84375)
+texture = ExtResource("7_v0ioj")
