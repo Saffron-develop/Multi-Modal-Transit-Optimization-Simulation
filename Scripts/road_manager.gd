@@ -76,7 +76,6 @@ func bake_roads() -> void:
 		id_node[process_progress] = node
 
 		for edge in edges[node]:
-
 			if not edges[edge].has(node):
 				edges[edge].append(node)
 
